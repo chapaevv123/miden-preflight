@@ -1,0 +1,15 @@
+[project]
+role = "hybrid"
+target = "miden-0.16"
+
+[store]
+kind = "sqlite"
+source_version = "0.15.9"
+private_notes = true
+export_plan = true
+
+[capabilities]
+private_notes = true
+
+[private_note]
+checks = ["delivery", "block_hint", "incremental_fetch", "sync_progress", "committed_application", "retry", "deduplication"]

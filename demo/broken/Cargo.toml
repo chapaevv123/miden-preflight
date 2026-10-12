@@ -1,0 +1,6 @@
+[package]
+name = "broken-miden-app"
+version = "0.1.0"
+
+[dependencies]
+miden-client = "0.15.5"

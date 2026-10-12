@@ -1,0 +1,13 @@
+lockfileVersion: '9.0'
+importers:
+  .:
+    dependencies:
+      '@miden-sdk/miden-sdk':
+        specifier: ^0.14.5
+        version: 0.14.5
+      '@miden-sdk/react':
+        specifier: ^0.14.5
+        version: 0.14.5
+packages:
+  '@miden-sdk/miden-sdk@0.14.5': {}
+  '@miden-sdk/react@0.14.5': {}

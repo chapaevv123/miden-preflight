@@ -1,0 +1,22 @@
+name: Miden Preflight
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e .
+      - run: miden-preflight scan . --target miden-0.16 --sarif > miden-preflight.sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: miden-preflight.sarif

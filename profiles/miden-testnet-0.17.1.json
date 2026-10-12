@@ -1,0 +1,115 @@
+{
+  "schema": "miden-preflight-live-profile-v1",
+  "profile": "miden-testnet-0.17.1",
+  "verified_at": "2026-10-12",
+  "network": {
+    "name": "Miden Testnet",
+    "version": "0.17.1",
+    "account_prefix": "mtst1",
+    "rpc": "https://rpc.testnet.miden.io/",
+    "genesis_commitment": "0x280189b64c3a22c9d8e6e6c2cd567f58c528fee3b73724a6d855066642d7e567",
+    "explorer": "https://testnet.midenscan.com"
+  },
+  "fee_asset": {
+    "symbol": "USDCX",
+    "decimals": 6,
+    "asset_id": "0x00000000000000000000000000000000113664ae4d228274310a5fe7ffcabd4c",
+    "verification_base_fee": "0.000007 USDCX",
+    "exact_transaction_fee": null,
+    "exact_fee_note": "Must be obtained from the synced Bread transaction preview; base fee alone is not an exact transaction fee."
+  },
+  "client": {
+    "wallet": "Bread Wallet",
+    "wallet_version": "1.17.1",
+    "sdk_version": "0.17.1"
+  },
+  "account_evidence": {
+    "public_account_id": "mtst1aptqc8q7msp80qgnnkl2ylzyeggwtdac_qr7qqq9wr6w",
+    "account_hex": "0x560c1c1edc027781139dbea27c44ca",
+    "network_validation": "OFFICIAL_WEB_SDK_0.17.1_DECODED",
+    "balance": "1.00 USDCX",
+    "balance_source": "OWNER_PROVIDED_BREAD_WALLET_UI",
+    "rpc_balance_verified": false
+  },
+  "recipient_evidence": {
+    "public_account_id": "mtst1aqut0l7lssja7qfvg3ygwzky5vy64t76_qr7qqq9wr6w",
+    "account_hex": "0x38b7ffdf8425df012c4448870ac4a3",
+    "network_validation": "OFFICIAL_WEB_SDK_0.17.1_DECODED",
+    "control_source": "OWNER_PROVIDED",
+    "balance": null
+  },
+  "transaction_constraints": {
+    "self_transfer_supported": false,
+    "self_transfer_evidence": "Bread Wallet 1.17.1 source returns cannotSendToSelf for the active account ID.",
+    "external_destination_selected": true,
+    "exact_amount_selected": false,
+    "exact_fee_available": false
+  },
+  "safety": {
+    "faucet_required": false,
+    "wallet_secret_storage_accessed": false,
+    "local_store_accessed": false,
+    "write_action_executed_by_preflight_agent": false,
+    "owner_authorized_live_transaction_executed": true
+  },
+  "post_validation": {
+    "owner_supplied_transaction_id": "0x06d17ae905abaa06fd56c09746e25024679ed6b81afdec849167c54d166a39d9c",
+    "owner_supplied_transaction_id_status": "INVALID_ODD_LENGTH_COPY",
+    "canonical_transaction_id": "0x06d17ae905aba06fd56c09746e25024679ed6b81afdec849167c54d166a39d9c",
+    "canonical_transaction_id_source": "MIDENSCAN_PUBLIC_GRAPHQL_BLOCK_QUERY",
+    "status": "CONFIRMED_BY_BLOCK_INCLUSION",
+    "block_number": 167209,
+    "block_timestamp": "2026-10-12T09:55:32Z",
+    "block_commitment": "0x18f947803859848b06722ca1f8b41acb83d798e45bd9ba8303f3234468ddbd6e",
+    "chain_commitment": "0x4ed75638599c0dcd15b58c84d660189da0740ef0641173599bbb342ae9cce085",
+    "sender_base_account": "mtst1aptqc8q7msp80qgnnkl2ylzyeggwtdac",
+    "transfer_amount": "0.000001 USDCX",
+    "maximum_preview_fee": "0.000210 USDCX",
+    "actual_fee": "0.000133 USDCX",
+    "actual_total_debit": "0.000134 USDCX",
+    "fee_evidence_source": "OWNER_PROVIDED_BREAD_RECEIPT",
+    "note_type": "PRIVATE",
+    "notes_created": 1,
+    "private_note_evidence_source": "OWNER_PROVIDED_EXPLORER_RECEIPT",
+    "public_block_note_count": 0,
+    "reference_block": null,
+    "chain_anchor": null,
+    "transaction_summary": null,
+    "sender_post_balance": null,
+    "recipient_post_balance": null
+  },
+  "private_note_discovery": {
+    "source_transaction": "0x06d17ae905aba06fd56c09746e25024679ed6b81afdec849167c54d166a39d9c",
+    "recipient": "mtst1aqut0l7lssja7qfvg3ygwzky5vy64t76_qr7qqq9wr6w",
+    "evidence_source": "OWNER_PROVIDED_BREAD_WALLET_UI",
+    "pending_items": 1,
+    "pending_value": "0.000001 USDCX",
+    "note_amount": "0.000001 USDCX",
+    "created": "PROVEN",
+    "committed": "PROVEN",
+    "delivered": "PROVEN",
+    "discovered": "PROVEN",
+    "consumable": "PROVEN",
+    "consumed": false,
+    "note_id": null,
+    "exact_sender_exposed": false,
+    "recipient_available_balance": null,
+    "unsigned_consumption_preview_available": false,
+    "verification_base_fee": "0.000007 USDCX",
+    "claim_fee_reserve_multiple": 30,
+    "conservative_claim_fee_reserve": "0.000210 USDCX",
+    "exact_consumption_fee": null,
+    "conservative_net_effect": "-0.000209 USDCX",
+    "owner_gate": "OWNER_APPROVAL_REQUIRED_WITH_UNCERTAIN_FEE",
+    "write_action_executed": false
+  },
+  "review_required": [
+    "Bread store/network/genesis alignment from a synced transaction preview",
+    "Minimum supported transfer amount",
+    "Exact maximum fee and expected total debit",
+    "Reference block and ChainAnchor produced by transaction preparation",
+    "Exact private-note identifier and full sender are not exposed by the pending-note card",
+    "Recipient available fee balance",
+    "Exact private-note consumption fee; Bread exposes no safe unsigned preview in the manual Accept path"
+  ]
+}

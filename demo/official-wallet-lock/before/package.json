@@ -1,0 +1,8 @@
+{
+  "name": "miden-wallet-example",
+  "private": true,
+  "dependencies": {
+    "@miden-sdk/miden-sdk": "^0.17.3",
+    "@miden-sdk/react": "^0.17.3"
+  }
+}

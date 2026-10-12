@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Miden Preflight catches compatibility and migration failures before they reach testnet.">
+  <title>Miden Preflight — Compatibility before testnet</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav shell">
+    <a class="brand" href="#top" aria-label="Miden Preflight home"><span class="mark">MP</span><span>Miden Preflight</span></a>
+    <nav aria-label="Primary navigation">
+      <a href="#checks">Checks</a><a href="#evidence">Evidence</a><a href="#workflow">Workflow</a>
+    </nav>
+    <a class="button ghost" href="#github">View GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="eyebrow"><i></i> Local-first Miden infrastructure</div>
+      <h1>Catch compatibility failures <em>before testnet.</em></h1>
+      <p class="lede">Miden Preflight detects SDK drift, toolchain mismatch, unreachable MASM, unsafe store migrations, and unsupported semantic assumptions—before they become debugging sessions.</p>
+      <div class="hero-actions"><a class="button primary" href="#github">View GitHub <span>↗</span></a><a class="button" href="#demo">See demo <span>↓</span></a></div>
+      <div class="terminal" role="img" aria-label="Example Miden Preflight scan output">
+        <div class="terminal-bar"><span></span><span></span><span></span><b>miden-preflight / scan</b></div>
+        <div class="terminal-body">
+          <p><small>$</small> miden-preflight scan . --target miden-0.16</p>
+          <p class="muted">PROJECT ROLE <strong>wallet</strong> <span class="pill">HIGH</span></p>
+          <p><span class="error">ERROR</span> <b>MIDEN016-SDK-002</b></p>
+          <p class="indent">Manifest declares <b>0.17.3</b>; lockfile resolves <b>0.14.5</b></p>
+          <p class="indent muted">packages/react-sdk/examples/wallet/pnpm-lock.yaml</p>
+          <p><span class="review">REVIEW</span> Fee semantics require executable evidence</p>
+          <p class="result">1 error · 1 review · 0 false confidence</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics shell" aria-label="Validated metrics">
+      <article><strong>3</strong><span>confirmed defect groups</span></article>
+      <article><strong>66.7%</strong><span>Step 4 discovery rate</span></article>
+      <article><strong>5 → 0</strong><span>contextual TOOL-001 false positives</span></article>
+      <article><strong>#167209</strong><span>live Testnet evidence</span></article>
+    </section>
+
+    <section class="section shell split">
+      <div><div class="eyebrow"><i></i> The problem</div><h2>Miden moves across multiple compatibility surfaces at once.</h2></div>
+      <div class="body-copy"><p>A build can compile while its lockfile resolves an older SDK family. A web consumer can be noisy if treated like a toolchain owner. A private note can be committed without being delivered or consumable.</p><p>Preflight keeps version, role, evidence, and severity in the same decision.</p></div>
+    </section>
+
+    <section id="checks" class="section shell">
+      <div class="section-head"><div><div class="eyebrow"><i></i> What it checks</div><h2>A compatibility gate with context.</h2></div><p>Static checks stay strict where evidence is deterministic. Unsupported semantics remain review items.</p></div>
+      <div class="check-grid">
+        <article><span>01</span><h3>Project role</h3><p>Conservative classification across SDK consumer, contract, wallet, node, tooling, hybrid, and unknown.</p></article>
+        <article><span>02</span><h3>Version families</h3><p>Declared dependencies versus resolved lockfiles, release channels, and target profiles.</p></article>
+        <article><span>03</span><h3>MASM graph</h3><p>Missing declarations, unreachable modules, moved sources, and bounded package structure.</p></article>
+        <article><span>04</span><h3>Migration safety</h3><p>Removed APIs, client-store transitions, private-note readiness, and non-destructive remediation.</p></article>
+        <article><span>05</span><h3>Semantic evidence</h3><p>Fee, anchor, note lifecycle, and retry claims labeled by actual proof type.</p></article>
+        <article><span>06</span><h3>CI outputs</h3><p>Human-readable output, JSON, and SARIF with no fabricated errors for skipped rules.</p></article>
+      </div>
+    </section>
+
+    <section id="evidence" class="section evidence-wrap">
+      <div class="shell">
+        <div class="section-head"><div><div class="eyebrow light"><i></i> Real evidence</div><h2>Found in first-party source.<br>Verified on live Testnet.</h2></div><p>Local reproductions, exact boundaries, no claim of upstream acceptance.</p></div>
+        <div class="evidence-grid">
+          <article class="defects"><h3>Official-source defect hunt</h3><ul><li><b>Web SDK wallet</b><span>0.17.3 manifest / 0.14.5 lock resolution</span></li><li><b>midenup on Windows</b><span>Non-native PATH construction</span></li><li><b>Rust SDK v0.16 docs</b><span>Prerelease pin inside stable documentation</span></li></ul></article>
+          <article class="chain"><div class="chain-top"><span>LIVE</span> Miden Testnet 0.17.1</div><div class="block-number">167209</div><p>Confirmed block</p><dl><div><dt>Transfer</dt><dd>0.000001 USDCX</dd></div><div><dt>Actual fee</dt><dd>0.000133 USDCX</dd></div><div><dt>Private note</dt><dd>Created → Consumable</dd></div></dl><small>Consumption intentionally not executed: no safe unsigned fee preview.</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section shell">
+      <div class="section-head"><div><div class="eyebrow"><i></i> Architecture</div><h2>Repository in. Evidence out.</h2></div><p>One local pipeline, with live evidence kept in a separate optional lane.</p></div>
+      <div class="flow" aria-label="Miden Preflight architecture">
+        <div><b>Repository</b><small>source + manifests</small></div><i>→</i><div><b>Role</b><small>context first</small></div><i>→</i><div><b>Profile</b><small>target aware</small></div><i>→</i><div><b>Rules</b><small>static + semantic</small></div><i>→</i><div><b>Findings</b><small>CLI · JSON · SARIF</small></div>
+      </div>
+      <div class="lane"><span>Optional live evidence</span><i></i><b>sanitized, owner-gated, never required for static scans</b></div>
+    </section>
+
+    <section id="demo" class="section shell demo">
+      <div><div class="eyebrow"><i></i> 30-second proof</div><h2>One mismatch.<br>One exact fix.<br>One clean rescan.</h2><p>The included demo uses a minimal reproduction of an official Web SDK wallet lockfile mismatch. No wallet, RPC write, or secret is required.</p></div>
+      <div class="code-card"><div><span>PowerShell</span><button id="copy" type="button">Copy</button></div><pre><code>cd demo/official-wallet-lock
+./run_demo.ps1
+
+BEFORE: FAIL
+  MIDEN016-SDK-002 · 0.17.3 → 0.14.5
+FIXED: PASS</code></pre></div>
+    </section>
+
+    <section class="section shell boundary">
+      <div><div class="eyebrow"><i></i> Evidence & limitations</div><h2>Confidence is a product feature.</h2></div>
+      <ul><li><b>Full:</b> miden-0.16 static rule support</li><li><b>Bounded:</b> Miden Testnet 0.17.1 live profile</li><li><b>Review:</b> ChainAnchor, Guardian/multisig, note consumption</li><li><b>Blocked:</b> pinned v0.16 MockClient execution on this Windows GNU environment</li></ul>
+    </section>
+
+    <section id="github" class="cta"><div class="shell"><p>Compatibility and migration preflight for Miden builders.</p><h2>Know before you debug.</h2><div><a class="button primary" href="#">GitHub publication pending owner approval</a></div></div></section>
+  </main>
+
+  <footer class="shell"><span>Miden Preflight</span><p>Independent developer tool. Not affiliated with or endorsed by Miden.</p><b>Built by Pulse</b></footer>
+  <script src="script.js"></script>
+</body>
+</html>

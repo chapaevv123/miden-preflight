@@ -1,0 +1,10 @@
+[project]
+target = "miden-0.16"
+
+[store]
+kind = "sqlite"
+source_version = "0.16.0"
+private_notes = false
+
+[capabilities]
+private_notes = false
