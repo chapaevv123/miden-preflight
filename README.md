@@ -2,6 +2,8 @@
 
 **Compatibility and migration preflight for Miden builders.**
 
+Live demo: https://chapaevv123.github.io/miden-preflight/
+
 Miden changes quickly across testnet and devnet releases, SDK families, toolchains, MASM package structure, client stores, fee semantics, and private-note workflows. A project can look correct in source while resolving an incompatible dependency family or carrying a stale state assumption.
 
 Miden Preflight is a local-first scanner that detects those risks before they become testnet debugging sessions. It classifies the repository, resolves the intended target profile, runs evidence-aware checks, and emits human-readable, JSON, or SARIF findings.
